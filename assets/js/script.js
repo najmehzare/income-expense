@@ -43,7 +43,10 @@ function loadData(){
             cell4.style.color = "red";
         }
 
-        cell5.innerHTML = '';
+        cell5.innerHTML = '<button class="btn btn-primary" type="button" onclick="deleteRow('+c+')" ' +
+            'style="background: rgb(255,255,255);border-color: rgb(255,25,25);color: rgb(203,17,17);">حذف</button>'+
+            '<button class="btn btn-primary" type="button" onclick="showDescription('+c+')"' +
+            '>نمایش</button>';
     }
 
 }
@@ -53,15 +56,15 @@ function createHeaderTable(tableId) {
     let header = table.createTHead();
     let row = header.insertRow(0);
     let cell = row.insertCell(0);
-    cell.innerHTML = "ردیف";
+    cell.innerHTML ="<b>" + "ردیف" + "</b>";
     cell = row.insertCell(1);
-    cell.innerHTML = "مبلغ";
+    cell.innerHTML ="<b>" +  "مبلغ" + "</b>";
     cell = row.insertCell(2);
-    cell.innerHTML = "تاریخ";
+    cell.innerHTML ="<b>" +  "تاریخ" + "</b>";
     cell = row.insertCell(3);
-    cell.innerHTML = "نوع هزینه";
+    cell.innerHTML ="<b>" +  "نوع هزینه" + "</b>";
     cell = row.insertCell(4);
-    cell.innerHTML = "توضیحات";
+    cell.innerHTML ="<b>" +  "توضیحات" + "</b>";
 
 }
 
@@ -131,8 +134,15 @@ function getAllData(){
     return allRecords;
 
 }
-//
-// function removeData(item){
-//     localStorage.removeItem('item');
-//     console.log(localStorage.getItem('item')); // null
-// }
+
+function showDescription(item){
+    let allData = getAllData();
+    let data = JSON.parse(allData[item]);
+
+    document.getElementById("myModal").style.display = "block";
+    document.getElementById("modalBody").innerHTML = data['description'];
+}
+
+function deleteRow(item){
+    localStorage.removeItem(item);
+}
