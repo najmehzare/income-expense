@@ -72,19 +72,19 @@
                                     ثبت هزینه و درآمد</h6>
                             </div>
                             <div class="card-body">
-                                <form method="" action="">
+                                <form>
                                     <div class="row panel">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="type"
-                                                   id="flexRadioDefault1" checked>
+                                            <input class="form-check-input" type="radio" name="type_amount"
+                                                   value="income" id="flexRadioDefault1" checked>
                                             <label class="form-check-label" for="flexRadioDefault1"
                                                    style="padding-right: 20px">
                                                 درآمد
                                             </label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="type"
-                                                   id="flexRadioDefault2">
+                                            <input class="form-check-input" type="radio" name="type_amount"
+                                                   value="expense" id="flexRadioDefault2">
                                             <label class="form-check-label" for="flexRadioDefault2"
                                                    style="padding-right: 20px">
                                                 هزینه
@@ -93,7 +93,7 @@
                                     </div>
                                     <div class="row panel">
                                         <div class="col"><label for="amount">مبلغ:&nbsp;</label>
-                                            <input type="number" name="amount" id="amount"></div>
+                                            <input type="number" name="amount" id="amount" placeholder="1000"></div>
                                     </div>
                                     <div class="row panel">
                                         <div class="col"><label for="date" class="col-form-label">تاریخ:&nbsp;</label>
@@ -111,7 +111,7 @@
                                     </div>
                                     <div class="row panel">
                                         <div class="col" style="text-align: center;width: 100%;">
-                                            <button class="btn btn-primary" type="button"
+                                            <button id="saveBtn" class="btn btn-primary" type="button" onclick="saveData()"
                                                     style="background: var(--green);text-align: center;width: 100%;">ثبت
                                                 دخل و خرج
                                             </button>
@@ -128,16 +128,8 @@
                             <div class="card-header d-flex justify-content-end align-items-center justify-content-sm-end justify-content-md-end justify-content-xl-end"></div>
                             <div class="card-body">
                                 <div class="table-responsive" style="text-align: center;">
-                                    <table class="table table-striped table-sm">
-                                        <thead>
-                                        <tr>
-                                            <th>توضیحات</th>
-                                            <th>نوع هزینه</th>
-                                            <th>تاریخ</th>
-                                            <th>مبلغ</th>
-                                            <th>ردیف</th>
-                                        </tr>
-                                        </thead>
+                                    <table class="table table-striped table-sm" id="tableData" style="direction: rtl">
+
                                         <tbody>
                                         <tr>
                                             <td>
@@ -165,32 +157,6 @@
                                             <td>۱۲۰۰۰ تومان</td>
                                             <td>۲</td>
                                         </tr>
-                                        <tr>
-                                            <td>
-                                                <button class="btn btn-primary" type="button"
-                                                        style="background: rgb(255,255,255);border-color: rgb(255,25,25);color: rgb(203,17,17);">
-                                                    حذف
-                                                </button>
-                                                <button class="btn btn-primary" type="button">نمایش</button>
-                                            </td>
-                                            <td style="color: rgb(255,17,2);">هزینه</td>
-                                            <td>۱۴۰۰/۱۲/۱۲</td>
-                                            <td>۱۲۰۰۰ تومان</td>
-                                            <td>۳</td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <button class="btn btn-primary" type="button"
-                                                        style="background: rgb(255,255,255);border-color: rgb(255,25,25);color: rgb(203,17,17);">
-                                                    حذف
-                                                </button>
-                                                <button class="btn btn-primary" type="button">نمایش</button>
-                                            </td>
-                                            <td style="color: rgb(255,17,2);">هزینه</td>
-                                            <td>۱۴۰۰/۱۲/۱۲</td>
-                                            <td>۱۲۰۰۰ تومان</td>
-                                            <td>۱</td>
-                                        </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -214,6 +180,7 @@
 <script src="assets/js/bs-init.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
 <script src="assets/js/theme.js"></script>
+<script src="assets/js/script.js"></script>
 </body>
 
 </html>
