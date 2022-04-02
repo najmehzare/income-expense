@@ -157,7 +157,35 @@
 
                 <div>
                     <button onclick="document.getElementById('myModal').style.display = 'none';"
-                    class="btn btn-danger" style="width: 100%;margin-top: 15px">بستن</button>
+                    class="btn btn-info" style="width: 100%;margin-top: 15px">بازگشت</button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Modal delete -->
+        <div id="modalDelete" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content ">
+                <div style="display: flex;justify-content: space-between;">
+                    <span class="close" onclick="document.getElementById('modalDelete').style.display = 'none';"
+                          style="text-align: end">&times;</span>
+                    <label>
+                       حذف
+                    </label>
+                </div>
+                <div class="card-body card">
+                    <p> آیا مطمئن هستید ؟</p>
+                </div>
+                <div style="display: flex;justify-content: space-between;">
+                    <div id="deleteDiv">
+
+                    </div>
+                    <div>
+                        <button onclick="document.getElementById('modalDelete').style.display = 'none';"
+                                class="btn btn-info" style="width: 100px;">بازگشت</button>
+                    </div>
                 </div>
             </div>
 

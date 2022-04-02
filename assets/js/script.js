@@ -43,7 +43,7 @@ function loadData(){
             cell4.style.color = "red";
         }
 
-        cell5.innerHTML = '<button class="btn btn-primary" type="button" onclick="deleteRow('+c+')" ' +
+        cell5.innerHTML = '<button class="btn btn-primary" type="button" onclick="deleteModal('+c+')" ' +
             'style="background: rgb(255,255,255);border-color: rgb(255,25,25);color: rgb(203,17,17);">حذف</button>'+
             '<button class="btn btn-primary" type="button" onclick="showDescription('+c+')"' +
             '>نمایش</button>';
@@ -143,6 +143,33 @@ function showDescription(item){
     document.getElementById("modalBody").innerHTML = data['description'];
 }
 
-function deleteRow(item){
-    localStorage.removeItem(item);
+function deleteModal(item){
+    document.getElementById("modalDelete").style.display = "block";
+
+    let button = document.createElement('button');
+    button.type = 'button';
+    button.innerHTML = 'حذف';
+    button.className = 'btn btn-danger';
+    button.style.width = '100px';
+
+    button.onclick = function() {
+        deleteRow(item)
+    };
+
+    let deleteDiv = document.getElementById('deleteDiv');
+    deleteDiv.removeChild(deleteDiv.firstChild);
+    deleteDiv.appendChild(button);
 }
+
+function deleteRow(item){
+    let allData = this.getAllData();
+
+    allData.splice(item, 1);
+
+    allData = JSON.stringify(allData);
+    localStorage.setItem('allRecords', allData);
+
+    localStorage.removeItem(item);
+    this.loadData();
+}
+
