@@ -1,7 +1,7 @@
 
 // localStorage.clear();
 
-loadData();
+// loadData();
 
 function loadData(){
 
@@ -9,6 +9,7 @@ function loadData(){
 
     let tableTd = "tableData";
     let row,cell1,cell2,cell3,cell4,cell5,data;
+    let sumIncome = 0,sumExpense = 0 ;
     let table = document.getElementById(tableTd);
 
     //delete last data of table
@@ -38,9 +39,11 @@ function loadData(){
         if(data['type_amount']==='income'){
             cell4.innerHTML = 'درآمد';
             cell4.style.color = "green";
+            sumIncome = sumIncome + parseInt(data['amount']);
         }else{
             cell4.innerHTML = 'هزینه';
             cell4.style.color = "red";
+            sumExpense = sumExpense + parseInt(data['amount']);
         }
 
         cell5.innerHTML = '<button class="btn btn-primary" type="button" onclick="deleteModal('+c+')" ' +
@@ -49,6 +52,8 @@ function loadData(){
             '>نمایش</button>';
     }
 
+    document.getElementById('sumIncome').value = sumIncome;
+    document.getElementById('sumExpense').value = sumExpense;
 }
 
 function createHeaderTable(tableId) {
@@ -153,7 +158,8 @@ function deleteModal(item){
     button.style.width = '100px';
 
     button.onclick = function() {
-        deleteRow(item)
+        deleteRow(item);
+        document.getElementById('modalDelete').style.display = 'none';
     };
 
     let deleteDiv = document.getElementById('deleteDiv');
@@ -169,7 +175,6 @@ function deleteRow(item){
     allData = JSON.stringify(allData);
     localStorage.setItem('allRecords', allData);
 
-    localStorage.removeItem(item);
     this.loadData();
 }
 
