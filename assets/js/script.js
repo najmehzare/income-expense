@@ -1,14 +1,16 @@
-
+const incomeArr = [0,0,0,0,0,0,0,0,0,0,0,0];
+const expenseArr = [0,0,0,0,0,0,0,0,0,0,0,0];
 // localStorage.clear();
 
 // loadData();
+
 
 function loadData(){
 
     let allData = getAllData();
 
     let tableTd = "tableData";
-    let row,cell1,cell2,cell3,cell4,cell5,data;
+    let row,cell1,cell2,cell3,cell4,cell5,data,month,date;
     let sumIncome = 0,sumExpense = 0 ;
     let table = document.getElementById(tableTd);
 
@@ -36,24 +38,46 @@ function loadData(){
         cell2.innerHTML = data['amount'] + ' تومان ';
         cell3.innerHTML = data['date'];
 
+        date=data['date'].split('-');
+        month = date[1];
+
         if(data['type_amount']==='income'){
             cell4.innerHTML = 'درآمد';
             cell4.style.color = "green";
             sumIncome = sumIncome + parseInt(data['amount']);
+
+            //data income chart
+            for (let i = 0; i < 12 ; i++)
+            {
+                if (month == i)
+                {
+                    incomeArr[i]=incomeArr[i]+ parseInt(data['amount']);
+                }
+            }
+
         }else{
             cell4.innerHTML = 'هزینه';
             cell4.style.color = "red";
             sumExpense = sumExpense + parseInt(data['amount']);
-        }
 
+            //data Expense chart
+            for (let i = 0; i < 12 ; i++)
+            {
+                if (month == i)
+                {
+                    expenseArr[i]=expenseArr[i]+ parseInt(data['amount']);
+                }
+            }
+        }
         cell5.innerHTML = '<button class="btn btn-primary" type="button" onclick="deleteModal('+c+')" ' +
             'style="background: rgb(255,255,255);border-color: rgb(255,25,25);color: rgb(203,17,17);">حذف</button>'+
             '<button class="btn btn-primary" type="button" onclick="showDescription('+c+')"' +
             '>نمایش</button>';
     }
 
-    document.getElementById('sumIncome').innerHTML = sumIncome;
-    document.getElementById('sumExpense').innerHTML = sumExpense;
+    document.getElementById('sumIncome').innerHTML = sumIncome+ 'تومان';
+    document.getElementById('sumExpense').innerHTML = sumExpense+ 'تومان';
+
 }
 
 function createHeaderTable(tableId) {
