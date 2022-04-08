@@ -52,8 +52,8 @@ function loadData(){
             '>نمایش</button>';
     }
 
-    document.getElementById('sumIncome').value = sumIncome;
-    document.getElementById('sumExpense').value = sumExpense;
+    document.getElementById('sumIncome').innerHTML = sumIncome;
+    document.getElementById('sumExpense').innerHTML = sumExpense;
 }
 
 function createHeaderTable(tableId) {
